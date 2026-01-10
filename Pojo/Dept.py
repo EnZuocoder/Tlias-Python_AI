@@ -1,0 +1,4 @@
+from pydantic import BaseModel, Field
+class Dept(BaseModel):
+    id: int =Field(default=None)
+    name:str=Field(...,min_length=2,max_length=20)
