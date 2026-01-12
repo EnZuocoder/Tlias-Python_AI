@@ -9,16 +9,10 @@ class JwtUtils:
     # 根据传入的claims生成token
     @staticmethod
     def createToken(claims: Dict) -> str:
-        """Create a JWT token from claims dict.
 
-        - Always sets `iat` (issued at) and `exp` (expiration) to now / now+1h.
-        - Uses HS256 and the module secret.
-        - Returns token as a string.
-        """
         if claims is None:
             payload = {}
         else:
-            # make a shallow copy to avoid mutating caller's dict
             payload = dict(claims)
 
 
@@ -27,7 +21,6 @@ class JwtUtils:
         payload["exp"] = int((now + timedelta(seconds=_EXP_SECONDS)).timestamp())
 
         token = jwt.encode(payload, _SECRET, algorithm=_ALGORITHM)
-        # PyJWT may return bytes in some versions; normalize to str
         if isinstance(token, bytes):
             token = token.decode("utf-8")
         return token

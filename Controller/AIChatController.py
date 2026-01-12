@@ -1,12 +1,10 @@
 from fastapi import APIRouter
-
 from Pojo.Result import Result
-from Utils.AI_assistant import chatWithAI, clearContext
-
+from Utils.AI_assistant import chatWithCloudAI, clearContext, chatWithLocalAI
 router=APIRouter(prefix="/AIChat",tags=["AIChat"])
 @router.get("")
 async def chat(message: str):
-    result={"AIResponse":chatWithAI(message)}
+    result={"AIResponse": chatWithCloudAI(message)}
     return Result.success(result)
 @router.delete("")
 async def clear():

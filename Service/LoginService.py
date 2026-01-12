@@ -6,7 +6,6 @@ from Utils.JwtUtils import JwtUtils
 
 
 async def login(params: LoginParams, db):
-    info=LoginInfo()
     sql=(select(EmpModel).
          where(EmpModel.username==params.username,
                             EmpModel.password==params.password))
@@ -14,6 +13,7 @@ async def login(params: LoginParams, db):
     emp=result.scalar_one_or_none()
     m=dict()
     if emp:
+        info = LoginInfo()
         m["id"]=emp.id
         m["username"]=emp.username
         info.id=emp.id
@@ -21,4 +21,5 @@ async def login(params: LoginParams, db):
         info.name=emp.name
         #根据用户的id和用户名生成token
         info.token=JwtUtils.createToken(m)
-    return info
+        return info
+    return None
