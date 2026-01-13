@@ -51,7 +51,8 @@ async def updateEmp(updatedEmp: Emp, db: AsyncSession = Depends(get_db)):
     return Result.success()
 # 获取所有员工信息(不包含工作经历,不包含部门信息)
 @router.get("/list")
-async def getAllEmps(db: AsyncSession = Depends(get_db)):
-    result = await EmpService.getAllEmps(db)
+async def getAllmasters(db: AsyncSession = Depends(get_db)):
+    result = await EmpService.getAllmasters(db)
     return Result.success(result)
+
 

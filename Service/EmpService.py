@@ -99,6 +99,7 @@ async def updateEmp(updatedEmp, db):
     await db.commit()
     return True
 
-async def getAllEmps(db):
-    result = await db.execute(select(EmpModel))
+async def getAllmasters(db):
+    #获取到所有班主任信息
+    result = await db.execute(select(EmpModel).where(EmpModel.job == 1))
     return result.scalars().all()
