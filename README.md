@@ -1,4 +1,4 @@
-# Tlias智能学习辅助系统 Python后端 AI
+# Tlias智能后台管理系统 Python后端 AI
 
 ### 这次用FastAPI这个Python后端web框架重写了一遍Tlias的后端,用作python的大作业
 
